@@ -82,27 +82,26 @@ h1 {
   display: inline-flex; align-items: center; gap: 0.55rem;
   background: var(--rust); color: var(--card); text-decoration: none;
   font-weight: 600; padding: 0.8rem 1.4rem; border-radius: 999px;
-  box-shadow: 3px 3px 0 var(--mustard), 6px 6px 0 var(--forest);
-  margin: 0 6px 6px 0; transition: transform 0.12s, box-shadow 0.12s;
+  box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--forest);
+  margin: 0 4px 4px 0; transition: transform 0.12s, box-shadow 0.12s;
 }
-.btn:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--forest); }
-.btn:active { transform: translate(6px, 6px); box-shadow: none; }
+.btn:hover { transform: translate(1px, 1px); box-shadow: 1.5px 1.5px 0 var(--mustard), 3px 3px 0 var(--forest); }
+.btn:active { transform: translate(4px, 4px); box-shadow: none; }
 .btn svg { width: 1.1rem; height: 1.1rem; }
 .hero-photo { position: relative; justify-self: center; width: min(100%, 19rem); }
-.hero-photo img { position: relative; width: calc(100% - 1rem); border-radius: 12rem 12rem 1.5rem 1.5rem; aspect-ratio: 8 / 9; object-fit: cover; box-shadow: 0.5rem 0.5rem 0 var(--mustard), 1rem 1rem 0 var(--forest); margin: 0 1rem 1rem 0; }
+.hero-photo img { position: relative; width: calc(100% - 4px); border-radius: 12rem 12rem 1.5rem 1.5rem; aspect-ratio: 8 / 9; object-fit: cover; box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--forest); margin: 0 4px 4px 0; }
 
 /* sections */
 section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
 .head { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 2rem; }
 .kicker { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rust); }
-h2 { font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.05; letter-spacing: -0.025em; }
+h2 { font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--forest); text-shadow: 0.75px 0.75px 0 var(--mustard), 1.5px 1.5px 0 var(--mustard); }
 h3 { letter-spacing: -0.015em; }
 .lede { color: var(--soft); max-width: 58ch; }
 
 /* selling now */
 .now { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
-.rolecard { background: var(--card); border: 1px solid var(--line); border-radius: 1.25rem; border-top: 6px solid var(--rust); }
-.rolecard:nth-child(2) { border-top-color: var(--mustard); }
+.rolecard { background: var(--card); border-radius: 1.25rem; box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--forest); margin: 0 4px 4px 0; }
 .rolecard summary {
   list-style: none; cursor: pointer; padding: 2rem 1.5rem 1.1rem;
   display: flex; flex-direction: column; align-items: center; gap: 1.1rem; text-align: center;
@@ -171,7 +170,7 @@ h3 { letter-spacing: -0.015em; }
 .tags li:nth-child(3) { background: var(--clay); }
 .tags li:nth-child(4) { background: var(--mustard); color: var(--ink); }
 .photos { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; max-width: 44rem; margin-inline: auto; }
-.shot { width: calc(100% - 0.9rem); height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 1.25rem; box-shadow: 0.45rem 0.45rem 0 var(--mustard), 0.9rem 0.9rem 0 var(--forest); margin: 0 0.9rem 0.9rem 0; }
+.shot { width: calc(100% - 4px); height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 1.25rem; box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--forest); margin: 0 4px 4px 0; }
 .slot {
   aspect-ratio: 4 / 5; border-radius: 1.25rem; border: 2px dashed var(--clay); color: var(--clay);
   display: grid; place-items: center; text-align: center; padding: 1rem; font-size: 0.9rem; font-weight: 500;
@@ -181,8 +180,8 @@ h3 { letter-spacing: -0.015em; }
 .contact { background: var(--forest); color: var(--card); border-radius: 1.5rem; padding: clamp(1.75rem, 5vw, 3rem); display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
 .contact h2 { color: var(--card); }
 .contact p { max-width: 50ch; color: #e6dcc4; }
-.contact .btn { box-shadow: 3px 3px 0 var(--mustard), 6px 6px 0 var(--ink); }
-.contact .btn:hover { box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--ink); }
+.contact .btn { box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--ink); }
+.contact .btn:hover { box-shadow: 1.5px 1.5px 0 var(--mustard), 3px 3px 0 var(--ink); }
 .contact .btn:active { box-shadow: none; }
 .mailrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
 .contact .btn { border: 0; font: inherit; font-weight: 600; cursor: pointer; }
