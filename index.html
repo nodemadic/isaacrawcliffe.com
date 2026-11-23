@@ -63,7 +63,7 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; }
   padding: 2rem 0 4rem;
 }
 .hero-text { display: flex; flex-direction: column; gap: 1.25rem; align-items: flex-start; }
-.title-slot { font-size: clamp(1.3rem, 2.8vw, 1.75rem); font-weight: 600; letter-spacing: -0.02em; color: var(--rust); line-height: 1.2; }
+.title-slot { font-size: clamp(1.3rem, 2.8vw, 1.75rem); font-weight: 700; letter-spacing: -0.02em; color: var(--forest); line-height: 1.2; text-shadow: 0.75px 0.75px 0 var(--mustard), 1.5px 1.5px 0 var(--mustard); }
 .current { font-weight: 500; color: var(--ink); }
 .current span { color: var(--soft); font-weight: 400; }
 .todo { border: 2px dashed var(--clay); border-radius: 0.6rem; padding: 0.15rem 0.6rem; color: var(--clay); }
@@ -131,6 +131,7 @@ h3 { letter-spacing: -0.015em; }
 .pitch { position: relative; padding: 0 0 2.25rem 8rem; min-height: 4.5rem; }
 .wall { position: absolute; left: 0; top: 0; bottom: 0; width: 110px; }
 .hold-inline { display: none; }
+.mroute { display: none; }
 .rope { position: absolute; left: 0; top: 24px; width: 110px; height: 100%; overflow: visible; }
 .rope path { fill: none; stroke: var(--rust); stroke-width: 3; stroke-linecap: round; vector-effect: non-scaling-stroke; }
 .gear { position: absolute; left: 0; top: 0; width: 110px; height: 44px; overflow: visible; }
@@ -199,8 +200,10 @@ footer { text-align: center; padding: 2rem 0 3rem; color: var(--soft); font-size
 }
 @media (max-width: 640px) {
   .pitch { padding-left: 0.25rem; }
-  .wall { left: auto; right: 0; opacity: 0.22; }
-  .gear .holdg { display: none; }
+  .wall { display: none; }
+  .route { position: relative; }
+  .mroute { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; opacity: 0.3; }
+  .mroute { display: block; }
   .hold-inline { display: inline-block; width: 1.25em; height: 1.18em; vertical-align: -0.22em; margin-left: 0.35em; }
   .hold-inline path { stroke: none; }
   .hold-inline .hole { fill: var(--paper); }
@@ -289,7 +292,7 @@ footer { text-align: center; padding: 2rem 0 3rem; color: var(--soft); font-size
     <div class="head">
       <h2 id="route-h">The route so far</h2>
     </div>
-    <ol class="route" reversed>
+    <ol class="route" reversed id="route-list">
       <li class="pitch pitch-next"><div class="wall"><span class="mini m1" style="left:30px;top:51px;margin-top:-6px;width:13px;height:11px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(31deg)"></span><span class="mini m2" style="left:38px;top:112px;margin-top:-6px;width:14px;height:13px;border-radius:50% 50% 62% 38% / 42% 58% 46% 54%;transform:rotate(19deg)"></span><span class="mini m3" style="left:76px;top:93px;margin-top:-6px;width:13px;height:11px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(35deg)"></span><span class="mini m3" style="left:30px;top:73%;margin-top:-6px;width:15px;height:13px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(-17deg)"></span><span class="mini m1" style="left:20px;top:90%;margin-top:-4px;width:11px;height:8px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(-35deg)"></span><span class="mini m1" style="left:84px;top:87%;margin-top:-5px;width:12px;height:10px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(27deg)"></span><span class="mini m1" style="left:18px;top:65%;margin-top:-4px;width:9px;height:8px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(36deg)"></span><span class="mini m3" style="left:12px;top:91%;margin-top:-5px;width:11px;height:10px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(-15deg)"></span><span class="mini m2" style="left:73px;top:76%;margin-top:-6px;width:14px;height:12px;border-radius:50% 50% 62% 38% / 42% 58% 46% 54%;transform:rotate(-30deg)"></span><svg class="rope" viewBox="0 0 110 100" preserveAspectRatio="none" aria-hidden="true"><path d="M68 0 C68 55, 24 45, 24 100"/></svg><svg class="gear" viewBox="0 0 110 44" aria-hidden="true"><g class="holdg" transform="translate(68 -2)"><path class="hold c0" d="M6 10 C10 2, 24 1, 30 7 C36 13, 34 25, 26 29 C18 33, 7 31, 3 23 C1 18, 3 14, 6 10 Z"/><circle class="hole" cx="18" cy="16" r="3"/></g></svg><svg class="climber" viewBox="0 0 15 15" aria-hidden="true"><path fill="currentColor" d="M10.5 7.66c-.1-.38-.59-.69-.96-.51L8.1 7.8V5.22l2.53-3.97c.18-.29.11-.67-.18-.86c-.3-.18-.68-.1-.84.19L7.49 3.95l-1.28.01c-.08 0-.16.01-.25.04l-2.21.86l-1.13-1.71a.64.64 0 0 0-.87-.19c-.29.19-.38.58-.19.87l1.42 2.14c.16.25.5.36.79.24l1.63-.63V8.4l-2.22 4.92c-.17.37.01.79.41 1c.39.22.84.09 1-.28l1.78-4.07c.16.04.33.06.5.06s.32-.03.46-.08l2.01-.93l.43 1.76c.1.39.5.63.9.53c.39-.1.63-.49.53-.88l-.7-2.76zM6.57 3.73c.62 0 1.12-.49 1.12-1.1a1.116 1.116 0 0 0-2.23 0c0 .61.5 1.1 1.11 1.1M7.5 15h.6v-4.97l-.6.47z"/></svg></div><div class="pbody"><h3>Your Company <span>Business Development</span><svg class="hold-inline c0" viewBox="0 0 36 34" aria-hidden="true"><path d="M6 10 C10 2, 24 1, 30 7 C36 13, 34 25, 26 29 C18 33, 7 31, 3 23 C1 18, 3 14, 6 10 Z"/><circle class="hole" cx="18" cy="16" r="3"/></svg></h3><p>I'm looking for a role at a growing company where I can manage or sell a technical product. Commission is king. I'm only looking for opportunities with upside for overperforming.</p><p style="margin-top:0.6rem"><a class="btn" href="#contact">Get in touch</a></p></div></li>
       <li class="pitch"><div class="wall"><span class="mini m0" style="left:84px;top:67%;margin-top:-6px;width:15px;height:13px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(0deg)"></span><span class="mini m0" style="left:98px;top:61%;margin-top:-5px;width:13px;height:10px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(-27deg)"></span><span class="mini m3" style="left:52px;top:45%;margin-top:-5px;width:13px;height:10px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(-38deg)"></span><span class="mini m1" style="left:89px;top:32%;margin-top:-6px;width:12px;height:11px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(-34deg)"></span><span class="mini m3" style="left:60px;top:80%;margin-top:-6px;width:15px;height:11px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(40deg)"></span><span class="mini m0" style="left:26px;top:66%;margin-top:-6px;width:14px;height:11px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(-39deg)"></span><span class="mini m1" style="left:54px;top:47%;margin-top:-5px;width:11px;height:10px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(-39deg)"></span><span class="mini m1" style="left:7px;top:91%;margin-top:-7px;width:16px;height:14px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(-16deg)"></span><span class="mini m1" style="left:59px;top:97%;margin-top:-5px;width:12px;height:10px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(9deg)"></span><svg class="rope" viewBox="0 0 110 100" preserveAspectRatio="none" aria-hidden="true"><path d="M24 0 C24 55, 38 45, 38 100"/></svg><svg class="gear" viewBox="0 0 110 44" aria-hidden="true"><circle class="bolt" cx="15" cy="6" r="3.5"/><line class="sling" x1="15" y1="6" x2="21" y2="18"/><circle class="ring" cx="24" cy="24" r="6.5"/><g class="holdg" transform="translate(64 -2)"><path class="hold c1" d="M4 14 C5 5, 16 2, 25 4 C33 6, 35 15, 32 22 C29 30, 17 32, 9 29 C3 26, 3 20, 4 14 Z"/><circle class="hole" cx="18" cy="16" r="3"/></g></svg></div><div class="pbody"><h3>Velocity Packaging <span>Founder</span><svg class="hold-inline c1" viewBox="0 0 36 34" aria-hidden="true"><path d="M4 14 C5 5, 16 2, 25 4 C33 6, 35 15, 32 22 C29 30, 17 32, 9 29 C3 26, 3 20, 4 14 Z"/><circle class="hole" cx="18" cy="16" r="3"/></svg></h3><p class="pmeta">Jul 2026 to present · Los Angeles</p><p>Started a company selling packaging films to Southern California manufacturers. Built the cold outbound system and run it by phone and email.</p></div></li>
       <li class="pitch"><div class="wall"><span class="mini m0" style="left:52px;top:85%;margin-top:-5px;width:12px;height:10px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(35deg)"></span><span class="mini m1" style="left:40px;top:34%;margin-top:-5px;width:12px;height:10px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(37deg)"></span><span class="mini m1" style="left:86px;top:44%;margin-top:-4px;width:9px;height:7px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(-7deg)"></span><span class="mini m3" style="left:2px;top:74%;margin-top:-5px;width:13px;height:10px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(-29deg)"></span><span class="mini m2" style="left:30px;top:63%;margin-top:-4px;width:9px;height:7px;border-radius:50% 50% 62% 38% / 42% 58% 46% 54%;transform:rotate(18deg)"></span><span class="mini m3" style="left:18px;top:93%;margin-top:-4px;width:11px;height:9px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(-21deg)"></span><span class="mini m1" style="left:41px;top:61%;margin-top:-4px;width:12px;height:9px;border-radius:45% 55% 40% 60% / 60% 45% 55% 40%;transform:rotate(40deg)"></span><span class="mini m3" style="left:70px;top:57%;margin-top:-6px;width:15px;height:13px;border-radius:58% 42% 55% 45% / 48% 60% 40% 52%;transform:rotate(13deg)"></span><svg class="rope" viewBox="0 0 110 100" preserveAspectRatio="none" aria-hidden="true"><path d="M38 0 C38 55, 20 45, 20 100"/></svg><svg class="gear" viewBox="0 0 110 44" aria-hidden="true"><circle class="bolt" cx="29" cy="6" r="3.5"/><line class="sling" x1="29" y1="6" x2="35" y2="18"/><circle class="ring" cx="38" cy="24" r="6.5"/><g class="holdg" transform="translate(68 -2)"><path class="hold c2" d="M9 6 C17 0, 29 4, 32 12 C35 20, 30 29, 21 31 C12 33, 3 27, 2 18 C2 13, 5 9, 9 6 Z"/><circle class="hole" cx="18" cy="16" r="3"/></g></svg></div><div class="pbody"><h3>Engage Forward <span>Tech Consultant</span><svg class="hold-inline c2" viewBox="0 0 36 34" aria-hidden="true"><path d="M9 6 C17 0, 29 4, 32 12 C35 20, 30 29, 21 31 C12 33, 3 27, 2 18 C2 13, 5 9, 9 6 Z"/><circle class="hole" cx="18" cy="16" r="3"/></svg></h3><p class="pmeta">Jan 2026 to present · Los Angeles</p><p>Help manufacturers choose and adopt ERP software as an Odoo partner. Discovery, automations and AI workflows, and coaching teams through rollout.</p></div></li>
@@ -342,6 +345,86 @@ footer { text-align: center; padding: 2rem 0 3rem; color: var(--soft); font-size
       navigator.clipboard.writeText(addr).then(function () { done(true); }, function () { done(false); });
     } catch (e) { done(false); }
   });
+})();
+</script>
+<script>
+/* Phone layout: draw a second climbing route that runs past the hold beside each title. */
+(function () {
+  var list = document.getElementById('route-list');
+  if (!list) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var CLIMBER = 'M10.5 7.66c-.1-.38-.59-.69-.96-.51L8.1 7.8V5.22l2.53-3.97c.18-.29.11-.67-.18-.86c-.3-.18-.68-.1-.84.19L7.49 3.95l-1.28.01c-.08 0-.16.01-.25.04l-2.21.86l-1.13-1.71a.64.64 0 0 0-.87-.19c-.29.19-.38.58-.19.87l1.42 2.14c.16.25.5.36.79.24l1.63-.63V8.4l-2.22 4.92c-.17.37.01.79.41 1c.39.22.84.09 1-.28l1.78-4.07c.16.04.33.06.5.06s.32-.03.46-.08l2.01-.93l.43 1.76c.1.39.5.63.9.53c.39-.1.63-.49.53-.88l-.7-2.76zM6.57 3.73c.62 0 1.12-.49 1.12-1.1a1.116 1.116 0 0 0-2.23 0c0 .61.5 1.1 1.11 1.1M7.5 15h.6v-4.97l-.6.47z';
+  var COLORS = ['var(--forest)', 'var(--clay)', 'var(--mustard)', 'var(--rust)'];
+  function el(name, attrs, style) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (style) e.setAttribute('style', style);
+    return e;
+  }
+  function rand(seed) { var x = Math.sin(seed * 127.1) * 43758.5453; return x - Math.floor(x); }
+  function blob(svg, x, y, r, seed) {
+    svg.appendChild(el('ellipse', { cx: x.toFixed(1), cy: y.toFixed(1), rx: r, ry: (r * 0.8).toFixed(1),
+      transform: 'rotate(' + Math.round(rand(seed + 9) * 80 - 40) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')' },
+      'fill:' + COLORS[Math.floor(rand(seed + 3) * 4)]));
+  }
+  function draw() {
+    var old = list.querySelector('.mroute');
+    if (old) old.remove();
+    if (!window.matchMedia('(max-width: 640px)').matches) return;
+    var box = list.getBoundingClientRect();
+    var pts = [];
+    list.querySelectorAll('.hold-inline').forEach(function (h) {
+      var r = h.getBoundingClientRect();
+      pts.push({ x: r.left - box.left + r.width / 2, y: r.top - box.top + r.height / 2 });
+    });
+    if (pts.length < 2) return;
+    var start = list.querySelector('.pitch-start h3');
+    var sr = start ? start.getBoundingClientRect() : null;
+    var svg = el('svg', { 'class': 'mroute', 'aria-hidden': 'true' });
+    var W = box.width;
+    // climber: right hand just under the top hold, rope leaves from the harness
+    var S = 66 / 15, top = pts[0];
+    var cx = Math.max(0, Math.min(W - 66, top.x - 3 - 10.5 * S)), cy = top.y + 11 - 0.3 * S;
+    var tail = { x: cx + 7.8 * S, y: cy + 15 * S };
+    // clip rings sit just left of and below each hold
+    var rings = pts.slice(1).map(function (p) { return { x: Math.min(W - 10, p.x + 24), y: p.y + 10, hx: p.x, hy: p.y }; });
+    var end = sr ? { x: Math.min(W - 12, sr.right - box.left + 18), y: sr.top - box.top + sr.height / 2 } : null;
+    var chain = [tail].concat(rings); if (end) chain.push(end);
+    // small holds scattered along the way
+    for (var i = 0; i < chain.length - 1; i++) {
+      var a = chain[i], b = chain[i + 1], n = Math.max(3, Math.round((b.y - a.y) / 34));
+      for (var k = 1; k <= n; k++) {
+        var t = k / (n + 1), seed = i * 17 + k;
+        var x = a.x + (b.x - a.x) * t + (rand(seed) * 2 - 1) * 46, y = a.y + (b.y - a.y) * t + (rand(seed + 5) * 2 - 1) * 8;
+        blob(svg, Math.max(8, Math.min(W - 8, x)), y, 4 + rand(seed + 1) * 4, seed);
+      }
+    }
+    // holds under the climber's left hand and both feet
+    blob(svg, cx + 1.7 * S, cy + 3.2 * S, 6, 41); blob(svg, cx + 3.4 * S, cy + 14.6 * S, 6.5, 42); blob(svg, cx + 10.7 * S, cy + 11 * S, 6, 43);
+    // rope
+    var d = 'M' + chain[0].x.toFixed(1) + ' ' + chain[0].y.toFixed(1);
+    for (var j = 1; j < chain.length; j++) {
+      var p = chain[j - 1], q = chain[j], my = (p.y + q.y) / 2;
+      d += ' C' + p.x.toFixed(1) + ' ' + my.toFixed(1) + ' ' + q.x.toFixed(1) + ' ' + my.toFixed(1) + ' ' + q.x.toFixed(1) + ' ' + q.y.toFixed(1);
+    }
+    svg.appendChild(el('path', { d: d }, 'fill:none;stroke:var(--rust);stroke-width:3;stroke-linecap:round'));
+    rings.forEach(function (r) {
+      svg.appendChild(el('line', { x1: r.x + 6, y1: r.y - 15, x2: r.x + 2, y2: r.y - 5 }, 'stroke:var(--ink);stroke-width:3;stroke-linecap:round'));
+      svg.appendChild(el('circle', { cx: r.x + 6, cy: r.y - 15, r: 3.2 }, 'fill:var(--ink)'));
+      svg.appendChild(el('circle', { cx: r.x, cy: r.y, r: 6 }, 'fill:none;stroke:var(--ink);stroke-width:2.5'));
+    });
+    if (end) svg.appendChild(el('circle', { cx: end.x, cy: end.y, r: 6.5 }, 'fill:var(--ink)'));
+    var g = el('g', { transform: 'translate(' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ') scale(' + S.toFixed(3) + ')' });
+    g.appendChild(el('path', { d: CLIMBER }, 'fill:var(--ink)'));
+    svg.appendChild(g);
+    list.insertBefore(svg, list.firstChild);
+  }
+  var timer;
+  function schedule() { clearTimeout(timer); timer = setTimeout(draw, 120); }
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', draw);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  draw();
 })();
 </script>
 </body>
