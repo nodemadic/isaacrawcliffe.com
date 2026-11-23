@@ -116,7 +116,7 @@ h3 { letter-spacing: -0.015em; }
 .role { font-weight: 600; color: var(--clay); font-size: 0.95rem; }
 .chev { width: 0.7rem; height: 0.7rem; border-right: 2.5px solid var(--clay); border-bottom: 2.5px solid var(--clay); transform: rotate(45deg); transition: transform 0.15s; margin-bottom: 0.3rem; }
 .rolecard[open] .chev { transform: rotate(225deg); margin: 0.3rem 0 0; }
-.more { max-width: 30rem; margin: 0.25rem auto 0; padding: 0.5rem 1rem 0; display: flex; flex-direction: column; gap: 0.7rem; align-items: center; text-align: center; }
+.more { max-width: 30rem; margin: 0.25rem auto 0; padding: 0.5rem 1rem 0; display: flex; flex-direction: column; gap: 0.7rem; align-items: flex-start; text-align: left; }
 .more a { font-weight: 600; }
 
 /* built */
@@ -178,18 +178,21 @@ h3 { letter-spacing: -0.015em; }
 }
 
 /* contact */
-.contact {
-  background: var(--card); border-radius: 1.25rem; max-width: 34rem; margin: 0 auto;
-  box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--forest);
-  padding: clamp(1.75rem, 5vw, 2.5rem); display: flex; flex-direction: column; gap: 1.25rem; align-items: center; text-align: center;
-}
-.contact .addr { font-weight: 700; font-size: clamp(1.15rem, 3.4vw, 1.6rem); letter-spacing: -0.02em; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
-.contact .btn { border: 0; font: inherit; font-weight: 600; cursor: pointer; }
+.contact { display: flex; flex-direction: column; gap: 0.9rem; align-items: center; text-align: center; padding-bottom: 2rem; }
+.mailrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.35rem 0.5rem; position: relative; }
+.contact .addr { font-weight: 700; font-size: clamp(1.15rem, 3.4vw, 1.5rem); letter-spacing: -0.02em; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+.copy { border: 0; background: none; padding: 0.3rem; margin: 0; cursor: pointer; color: var(--clay); border-radius: 0.4rem; display: grid; place-items: center; }
+.copy:hover { color: var(--rust); background: var(--card); }
+.copy:focus-visible { outline: 3px solid var(--mustard); outline-offset: 2px; }
+.copy svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; display: block; }
+.copied { font-size: 0.85rem; font-weight: 600; color: var(--forest); min-width: 3.2rem; text-align: left; }
+.copied:empty { display: none; }
+.phone { font-weight: 600; font-size: 1.1rem; color: var(--ink); text-decoration: none; font-variant-numeric: tabular-nums; }
 .socials { display: flex; gap: 0.75rem; }
 .socials a { color: var(--ink); display: grid; place-items: center; width: 2.9rem; height: 2.9rem; border-radius: 0.75rem; }
-.socials a:hover { background: var(--paper); }
-.socials svg, .socials img { width: 2rem; height: 2rem; display: block; }
-.socials svg.line { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.socials a:hover { background: var(--card); }
+.socials svg { width: 2rem; height: 2rem; display: block; }
+.place { color: var(--soft); font-size: 0.95rem; }
 footer { text-align: center; padding: 2rem 0 3rem; color: var(--soft); font-size: 0.9rem; }
 
 @media (max-width: 760px) {
@@ -326,25 +329,32 @@ footer { text-align: center; padding: 2rem 0 3rem; color: var(--soft); font-size
       <h2 id="contact-h">Get in touch</h2>
     </div>
     <div class="contact">
-      <a class="addr" href="mailto:rawcliffe.isaac@gmail.com" id="email">rawcliffe.isaac@gmail.com</a>
-      <button class="btn" type="button" id="copy-email">Copy email</button>
+      <p class="mailrow">
+        <a class="addr" href="mailto:rawcliffe.isaac@gmail.com" id="email">rawcliffe.isaac@gmail.com</a>
+        <button class="copy" type="button" id="copy-email" aria-label="Copy email address" title="Copy email address">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16.5" rx="2.2"/><path d="M9 4.500V4a1.500 1.500 0 0 1 1.500-1.500h3A1.500 1.500 0 0 1 15 4v.5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/></svg>
+        </button>
+        <span class="copied" id="copy-status" role="status" aria-live="polite"></span>
+      </p>
+      <a class="phone" href="tel:+16074272241">(607) 427-2241</a>
       <ul class="socials">
         <li><a href="https://www.linkedin.com/in/isaac-rawcliffe/" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 382 382" fill="currentColor" aria-hidden="true"><path d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z"/></svg></a></li>
         <li><a href="https://www.instagram.com/backbeatboogie/" aria-label="Instagram @backbeatboogie" title="Instagram"><svg viewBox="0 0 551.034 551.034" fill="currentColor" aria-hidden="true"><path d="M386.878,0H164.156C73.64,0,0,73.64,0,164.156v222.722 c0,90.516,73.64,164.156,164.156,164.156h222.722c90.516,0,164.156-73.64,164.156-164.156V164.156 C551.033,73.64,477.393,0,386.878,0z M495.6,386.878c0,60.045-48.677,108.722-108.722,108.722H164.156 c-60.045,0-108.722-48.677-108.722-108.722V164.156c0-60.046,48.677-108.722,108.722-108.722h222.722 c60.045,0,108.722,48.676,108.722,108.722L495.6,386.878L495.6,386.878z"/><path d="M275.517,133C196.933,133,133,196.933,133,275.516 s63.933,142.517,142.517,142.517S418.034,354.1,418.034,275.516S354.101,133,275.517,133z M275.517,362.6 c-48.095,0-87.083-38.988-87.083-87.083s38.989-87.083,87.083-87.083c48.095,0,87.083,38.988,87.083,87.083 C362.6,323.611,323.611,362.6,275.517,362.6z"/><circle cx="418.306" cy="134.072" r="34.149"/></svg></a></li>
       </ul>
+      <p class="place">Los Angeles, California</p>
     </div>
   </section>
 
-  <footer>Isaac Rawcliffe · Los Angeles, CA</footer>
 </div>
 <script>
 (function () {
   var btn = document.getElementById('copy-email');
+  var status = document.getElementById('copy-status');
   var addr = 'rawcliffe.isaac@gmail.com';
   btn.addEventListener('click', function () {
     function done(ok) {
-      btn.textContent = ok ? 'Copied' : 'Select the address to copy';
-      setTimeout(function () { btn.textContent = 'Copy email'; }, 2000);
+      status.textContent = ok ? 'Copied' : 'Select the address to copy';
+      setTimeout(function () { status.textContent = ''; }, 2000);
     }
     try {
       navigator.clipboard.writeText(addr).then(function () { done(true); }, function () { done(false); });
