@@ -93,7 +93,7 @@ h1 {
 
 /* sections */
 section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
-.head { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 2rem; }
+.head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.35rem; margin-bottom: 2.25rem; }
 .kicker { font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rust); }
 h2 { font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--forest); text-shadow: 0.75px 0.75px 0 var(--mustard), 1.5px 1.5px 0 var(--mustard); }
 h3 { letter-spacing: -0.015em; }
@@ -127,7 +127,7 @@ h3 { letter-spacing: -0.015em; }
 .built .where { font-size: 0.85rem; font-weight: 600; color: var(--clay); }
 
 /* route */
-.route { max-width: 44rem; }
+.route { max-width: 40rem; margin-inline: auto; }
 .pitch { position: relative; padding: 0 0 2.25rem 8rem; min-height: 4.5rem; }
 .wall { position: absolute; left: 0; top: 0; bottom: 0; width: 110px; }
 .hold-inline { display: none; }
@@ -177,21 +177,19 @@ h3 { letter-spacing: -0.015em; }
 }
 
 /* contact */
-.contact { background: var(--forest); color: var(--card); border-radius: 1.5rem; padding: clamp(1.75rem, 5vw, 3rem); display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
-.contact h2 { color: var(--card); }
-.contact p { max-width: 50ch; color: #e6dcc4; }
-.contact .btn { box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--ink); }
-.contact .btn:hover { box-shadow: 1.5px 1.5px 0 var(--mustard), 3px 3px 0 var(--ink); }
-.contact .btn:active { box-shadow: none; }
-.mailrow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; }
+.contact {
+  background: var(--card); border-radius: 1.25rem; max-width: 34rem; margin: 0 auto;
+  box-shadow: 2px 2px 0 var(--mustard), 4px 4px 0 var(--forest);
+  padding: clamp(1.75rem, 5vw, 2.5rem); display: flex; flex-direction: column; gap: 1.25rem; align-items: center; text-align: center;
+}
+.contact .addr { font-weight: 700; font-size: clamp(1.15rem, 3.4vw, 1.6rem); letter-spacing: -0.02em; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
 .contact .btn { border: 0; font: inherit; font-weight: 600; cursor: pointer; }
-.socials { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-left: -0.45rem; }
-.socials a { color: var(--card); display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 0.75rem; }
-.socials a:hover { background: rgba(251, 245, 232, 0.12); }
-.socials svg { width: 2.1rem; height: 2.1rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.contact .addr { text-decoration: none; }
-.contact .addr { font-family: var(--display); font-weight: 700; font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--card); overflow-wrap: anywhere; }
-footer { padding: 2rem 0 3rem; color: var(--soft); font-size: 0.9rem; }
+.socials { display: flex; gap: 0.75rem; }
+.socials a { color: var(--ink); display: grid; place-items: center; width: 2.9rem; height: 2.9rem; border-radius: 0.75rem; }
+.socials a:hover { background: var(--paper); }
+.socials svg, .socials img { width: 2rem; height: 2rem; display: block; }
+.socials svg.line { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+footer { text-align: center; padding: 2rem 0 3rem; color: var(--soft); font-size: 0.9rem; }
 
 @media (max-width: 760px) {
   .hero { grid-template-columns: 1fr; padding-top: 1rem; }
@@ -315,16 +313,16 @@ footer { padding: 2rem 0 3rem; color: var(--soft); font-size: 0.9rem; }
     </div>
   </section>
 
-  <section id="contact" aria-labelledby="contact-h" style="border-top:0">
-    <div class="contact">
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="head">
       <h2 id="contact-h">Get in touch</h2>
-      <div class="mailrow">
-        <a class="addr" href="mailto:rawcliffe.isaac@gmail.com" id="email">rawcliffe.isaac@gmail.com</a>
-        <button class="btn" type="button" id="copy-email">Copy email</button>
-      </div>
+    </div>
+    <div class="contact">
+      <a class="addr" href="mailto:rawcliffe.isaac@gmail.com" id="email">rawcliffe.isaac@gmail.com</a>
+      <button class="btn" type="button" id="copy-email">Copy email</button>
       <ul class="socials">
-        <li><a href="https://www.linkedin.com/in/isaac-rawcliffe/" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7.5" width="18" height="12.5" rx="2.5"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5"/><path d="M3 13h18"/></svg></a></li>
-        <li><a href="https://www.instagram.com/backbeatboogie/" aria-label="Instagram @backbeatboogie" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 8h3l1.6-2.5h5.8L16.500 8h3A1.5 1.5 0 0 1 21 9.500v9a1.500 1.500 0 0 1-1.500 1.500h-15A1.500 1.500 0 0 1 3 18.500v-9A1.500 1.500 0 0 1 4.500 8z"/><circle cx="12" cy="13.5" r="3.7"/></svg></a></li>
+        <li><a href="https://www.linkedin.com/in/isaac-rawcliffe/" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 382 382" fill="currentColor" aria-hidden="true"><path d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z"/></svg></a></li>
+        <li><a href="https://www.instagram.com/backbeatboogie/" aria-label="Instagram @backbeatboogie" title="Instagram"><svg viewBox="0 0 551.034 551.034" fill="currentColor" aria-hidden="true"><path d="M386.878,0H164.156C73.64,0,0,73.64,0,164.156v222.722 c0,90.516,73.64,164.156,164.156,164.156h222.722c90.516,0,164.156-73.64,164.156-164.156V164.156 C551.033,73.64,477.393,0,386.878,0z M495.6,386.878c0,60.045-48.677,108.722-108.722,108.722H164.156 c-60.045,0-108.722-48.677-108.722-108.722V164.156c0-60.046,48.677-108.722,108.722-108.722h222.722 c60.045,0,108.722,48.676,108.722,108.722L495.6,386.878L495.6,386.878z"/><path d="M275.517,133C196.933,133,133,196.933,133,275.516 s63.933,142.517,142.517,142.517S418.034,354.1,418.034,275.516S354.101,133,275.517,133z M275.517,362.6 c-48.095,0-87.083-38.988-87.083-87.083s38.989-87.083,87.083-87.083c48.095,0,87.083,38.988,87.083,87.083 C362.6,323.611,323.611,362.6,275.517,362.6z"/><circle cx="418.306" cy="134.072" r="34.149"/></svg></a></li>
       </ul>
     </div>
   </section>
